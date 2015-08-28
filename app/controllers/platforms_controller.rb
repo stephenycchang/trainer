@@ -1,16 +1,25 @@
 class PlatformsController < ApplicationController
   def index
-    @platform = current_platform
+  end
+
+  def new
+    @platform = Platform.new
   end
 
   def show
-    @platform = current_platform
   end
 
   def edit
   end
 
   def create
+    @platform = Platform.new(platform_params)
+
+    if @platform.save
+      render :index
+    else
+      render :new
+    end
   end
 
   def update
